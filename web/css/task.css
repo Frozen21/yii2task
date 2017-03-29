@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29.03.2017, 0:42:51
+    Author     : Frozen
+*/
+#main-menu.navbar-default .navbar-brand {
+    color: rgba(252, 252, 252, 1);
+}
+#main-menu.navbar-default {
+    font-size: 16px;
+    background-color: rgba(42, 20, 66, 1);
+    border-width: 0px;
+    border-radius: 0px;
+}
+#main-menu.navbar-default .navbar-nav>li>a {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(42, 20, 66, 1);
+}
+#main-menu.navbar-default .navbar-nav>li>a:hover,
+#main-menu.navbar-default .navbar-nav>li>a:focus {
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(122, 69, 179, 1);
+}
+#main-menu.navbar-default .navbar-nav>.active>a,
+#main-menu.navbar-default .navbar-nav>.active>a:hover,
+#main-menu.navbar-default .navbar-nav>.active>a:focus {
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(173, 125, 179, 1);
+}
+#main-menu.navbar-default .navbar-toggle {
+    border-color: #ad7db3;
+}
+#main-menu.navbar-default .navbar-toggle:hover,
+#main-menu.navbar-default .navbar-toggle:focus {
+    background-color: #ad7db3;
+}
+#main-menu.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ad7db3;
+}
+#main-menu.navbar-default .navbar-toggle:hover .icon-bar,
+#main-menu.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #2a1442;
+}
+
