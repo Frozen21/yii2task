@@ -4,6 +4,8 @@ namespace app\controllers;
 use app\models\Tasklist;
 use app\models\Task;
 
+use Yii;
+
 /**
  * Description of PostController
  *
@@ -13,33 +15,52 @@ use app\models\Task;
 class TaskController extends AppController{
     
     public function actionIndex() {  
-    /*
-        $tasklist = Tasklist::find()->select('id, title')->all();
-        
-      $this->debug($tasklist); 
-    */
-        $hello = 'Hello, world';
-        return $this->render('index', compact('hello'));
+        /* TaskList save from Get */
+        if (!empty(Yii::$app->request->get('newtasklist')))
+            {
+                $newtasklist = Yii::$app->request->get('newtasklist');
+                $task_list = new Tasklist();
+                $task_list->title = $newtasklist;
+                $task_list->save();
+                $this->goHome();
+            }
+        /* TaskList get from db */
+        $tasklists = Tasklist::find()->select('id, title')->all();
+        /* Task save from Get */
+        if (!empty(Yii::$app->request->get('id')))
+        {
+            $id = Yii::$app->request->get('id');
+        }
+        if (!empty(Yii::$app->request->get('newtask'))&&!empty(Yii::$app->request->get('id')))
+            {
+                $newtask = Yii::$app->request->get('newtask');
+                $task = new Task();
+                $task->text = $newtask;
+                $task->tasklist_id = Yii::$app->request->get('id');
+                $task->rate = 0;                
+                $task->save();
+                $this->goHome();
+            }
+        /* Sort*/
+        $sort = \Yii::$app->request->get('sort');
+        /* Tasks get from db with pagination */
+        if (!empty(Yii::$app->request->get('id')))
+        {   
+            if ($sort)
+            {
+                $query = Task::find()->select('id, tasklist_id, text, rate, created_at')->where('tasklist_id = :id', [':id' => $id])->orderBy('created_at DESC');
+            }
+            else
+            {
+                $query = Task::find()->select('id, tasklist_id, text, rate, created_at')->where('tasklist_id = :id', [':id' => $id])->orderBy('created_at');
+            }    
+            /* Paginaton */
+            $pages = new \yii\data\Pagination(['totalCount' => $query->count(), 'pageSize' => 5, 'pageSizeParam' => false, 'forcePageParam' => false]);
+            $tasks = $query->offset($pages->offset)->limit($pages->limit)->all();
+        }
+            
+        return $this->render('index', compact('tasklists', 'id', 'tasks', 'pages'));
         
     }
     
-/*    public function actionList() {
-        $id = \Yii::$app->request->get('id');        
-        $sort = \Yii::$app->request->get('sort');      
-           
-        if ($sort) {
-            $query = Task::find()->select('id, task_id, title, text, rating')->where('task_id = :id', [':id' => $id])->orderBy('rating');
-        }
-        else {
-            $query = Task::find()->select('id, task_id, title, text, rating')->where('task_id = :id', [':id' => $id]);
-        }
-         
-        $pages = new \yii\data\Pagination(['totalCount' => $query->count(), 'pageSize' => 2, 'pageSizeParam' => false, 'forcePageParam' => false]);
-        $post = $query->offset($pages->offset)->limit($pages->limit)->all();
-        
-        $sort = false;
-                       
-        return $this->render('list', compact('post', 'pages'));
-    }
-*/    
 }

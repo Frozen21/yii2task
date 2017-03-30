@@ -55,7 +55,7 @@ $this->beginPage();
         <footer class="footer">
             <div class="container">
                 <span class="badge">
-                    <span class="glyphicon-copyright-mark"></span>TaskList <?=date('Y') ?>
+                    <span class="glyphicon glyphicon-copyright-mark"></span>TaskList <?=date('Y') ?>
                 </span>                
             </div>
         </footer>
