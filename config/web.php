@@ -49,7 +49,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-//                '<action>'=>'task/<action>',
+                '<action>'=>'task/<action>',
                                
             ],
         ],

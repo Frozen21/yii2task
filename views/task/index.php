@@ -55,6 +55,9 @@
         <?php foreach($tasks as $j): ?>
             <ul class="list-group">
                 <li class="list-group-item">
+                    <span class="badge badge-pill badge-warning">
+                        <a href="<?= yii\helpers\Url::to(['task/index', 'id_task_del' => $j->id])?>" style="color: #ffffff">Del</a>
+                    </span>
                     <span class="badge"><?= $j->created_at ?></span>
                     <?= $j->text ?>    
                 </li>

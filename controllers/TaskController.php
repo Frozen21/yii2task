@@ -58,6 +58,13 @@ class TaskController extends AppController{
             $pages = new \yii\data\Pagination(['totalCount' => $query->count(), 'pageSize' => 5, 'pageSizeParam' => false, 'forcePageParam' => false]);
             $tasks = $query->offset($pages->offset)->limit($pages->limit)->all();
         }
+        /* Deleting tasks */
+        $id_task_del = \Yii::$app->request->get('id_task_del');
+        if (!empty(Yii::$app->request->get('id_task_del')))
+        {
+            $task_del = Task::find()->where('id = :id_task_del', [':id_task_del' => $id_task_del])->one();
+            $task_del->delete();
+        }
             
         return $this->render('index', compact('tasklists', 'id', 'tasks', 'pages'));
         
