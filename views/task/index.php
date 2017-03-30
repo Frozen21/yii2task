@@ -116,9 +116,9 @@
             </button>
             <button class="btn btn-default" type="button" onclick="location.href='<?= yii\helpers\Url::to(['task/index', 'id' => $id, 'sort' => false])?>'">
                 <strong>New first</strong>
-            </button>
-            <button class="btn btn-default" type="button" onclick="location.href='<?= yii\helpers\Url::to(['task/index', 'id' => $id, 'rate' => true])?>'">
-                <strong>By rating</strong>
+            </button>            
+            <button type="button" class="btn btn-default" data-toggle="popover" title="Not workin' right now :)" data-content="There is will be order by rate">
+                <strong>By Rating</strong>
             </button>
         </span>               
         <?php endif;?>    

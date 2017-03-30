@@ -48,11 +48,11 @@ class TaskController extends AppController{
         {   
             if ($sort)
             {
-                $query = Task::find()->select('id, tasklist_id, text, rate, created_at')->where('tasklist_id = :id', [':id' => $id])->orderBy('created_at DESC');
+                $query = Task::find()->select('id, tasklist_id, text, rate, created_at')->where('tasklist_id = :id', [':id' => $id])->orderBy('created_at');
             }
             else
             {
-                $query = Task::find()->select('id, tasklist_id, text, rate, created_at')->where('tasklist_id = :id', [':id' => $id])->orderBy('created_at');
+                $query = Task::find()->select('id, tasklist_id, text, rate, created_at')->where('tasklist_id = :id', [':id' => $id])->orderBy('created_at DESC');
             }    
             /* Paginaton */
             $pages = new \yii\data\Pagination(['totalCount' => $query->count(), 'pageSize' => 5, 'pageSizeParam' => false, 'forcePageParam' => false]);
